@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %} History / Fuel {% endblock %}
+
+{% block content %}
+    <!-- Fuel Quote History -->
+    <div class="container py-3">
+      <h1 class="mb-3">Fuel Quote History</h1>
+      <table class="table">
+         <tr>
+            <th>Quote #</th>
+	         <th>Gallons Requested </th>
+            <th>Delivery Address </th>
+            <th>Delivery Date </th>
+            <th>Suggested Price / Gallon</th>
+            <th>Total Amount Due </th>
+         </tr>
+         {% if fuel_quote %}
+         {% for f in fuel_quote %}
+         <tr>
+            <td>{{ f.id }}</td>
+            <td>{{ f.gallons }}</td>
+            <td>{{ f.address }}</td>
+            <td>{{ f.date }}</td>
+            <td>{{ f.price }}</td>
+            <td>{{ f.total_price }}</td>
+         </tr>
+         {% endfor %}
+         {% endif %}
+    </table>
+    </div>
+{% endblock %}
