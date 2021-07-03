@@ -1,0 +1,6 @@
+__init__.py: Ignorable.tells Python that this is a Python package
+admin.py: Contains admin codebits.
+models.py: Where you'll define the dynamic data that'll go in your database.
+tests.py: Tests you'll create to run to test your app automatically.
+views.py: Where the logic goes that powers your website.
+urls.py: URL declarations for the project.
