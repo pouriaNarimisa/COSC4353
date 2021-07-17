@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %} Login / Fuel {% endblock %}
+
+{% block content %}
+<!-- Login form -->
+<style>
+    div.transbox {
+  height: 360px;
+  width: 400px;
+  background-color: #ffffff;
+  border: 1px solid black;
+}   
+</style>
+
+  <form action="login" method="post" class="container mt-5 text-center" id="register-form">
+    <div class = "transbox">
+      <h1> {% load static %} <img src="{% static "images/purpleicon.jpg" %}" alt="home" width="290" height="100" /> </h1>
+      
+      <h1 class="h3 mb-4 font-weight-normal"> Client login </h1>
+
+        {% csrf_token %}
+      <div class="form-group">
+        {{ form.username.label_tag }}
+        {{ form.username }}
+      </div>
+      <div class="form-group">
+        {{ form.password.label_tag }}
+        {{ form.password }}
+      </div>
+      {{ form.username.errors}}
+      {{ form.password.errors}}
+      <button type="submit" class="btn btn-primary">Log in</button>
+      </div>
+    </form>
+    
+{% endblock %}
