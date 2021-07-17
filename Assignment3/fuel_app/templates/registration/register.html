@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %} Register / Fuel {% endblock %}
+{% block content %}
+    <!-- Registration form -->
+    <style>
+    div.transbox {
+    height: 380px;
+    width: 500px;
+    background-color: #ffffff;
+    border: 1px solid black;
+    }   
+    </style>  
+
+    <form action="register" method="post" class="container mt-5 text-center" id="register-form">
+      
+      <div class = "transbox">
+      <h1> {% load static %} <img src="{% static "images/register2.jpg" %}" alt="home" width="100" height="100" /> </h1>
+
+      <h1 class="h3 mb-4 font-weight-normal"> Client Registration </h1>
+        {% csrf_token %}
+      <div class="form-group">
+        {{ form.username.label_tag }}
+        {{ form.username}}
+      </div>
+      <div class="form-group">
+        {{ form.password1.label_tag }}
+        {{ form.password1}}
+      </div>
+      <div class="form-group">
+        {{ form.password2.label_tag }}
+        {{ form.password2}}
+      </div>
+      {{ form.username.errors}}
+      {{ form.password1.errors}}
+      {{ form.password2.errors}}
+      <button type="submit" class="btn btn-primary">Register</button>
+      </dv>
+    </form>
+{% endblock %}
