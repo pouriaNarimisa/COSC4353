@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %} Quote / Fuel {% endblock %}
+
+{% block content %}
+    <!-- Fuel Quote Form -->
+    <div class="container py-3 text-center">
+      <form action="quote" id="quote-form" method="post" class="needs-validation" novalidate>
+        <h1 class="mb-3">New Fuel Quote</h1>
+        {% csrf_token %}
+        <div class="form-group py-2">
+         
+          <label for="id_gallons">Please enter the amount in gallons </label>
+          <input required id="id_gallons" type="number" name="gallons" class="form-control col-2 mx-auto" placeholder="0" min="0">
+                 
+         <!-- {{ form.gallons.label_tag }}
+         # {{ form.gallons }} -->
+
+        </div>
+        <div class="form-group py-2">
+          {{ form.date.label_tag }}
+          {{ form.date }}
+        </div>
+        <div class="form-group py-2">
+          {{ form.address.label_tag }}
+          {{ form.address }}
+        </div>
+        <div class="form-group py-2">
+          {{ form.price.label_tag }}
+          {{ form.price }}
+        </div>
+        <div class="form-group py-2">
+          {{ form.total_price.label_tag }}
+          {{ form.total_price }}
+        </div>  
+        <button type="button" id="get-quote" class="btn btn-dark" onclick="calculatePrice()">Get Quote</button>
+        <button type="submit" id="submit-quote" class="btn btn-primary">Submit Quote</button>
+        <button type="reset" id="cancel" class="btn btn-outline-secondary">Cancel</button>
+        {{ form.errors }}
+      </form>
+    </div>
+    
+    <script>
+      // Form Validation
+      var form = document.querySelector('.needs-validation');
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      });
+      form.addEventListener('reset', function(event) {
+        form.classList.remove('was-validated');
+      })
+
+      // Pricing Module
+      function calculatePrice() {
+        if ($("#id_gallons").val() < 0) {
+          $("#id_gallons").val(0)
+          return;
+        }
+        let current_price = 1.50;
+        let location_factor = 0.04;
+        if ("{{current_profile.state}}".toUpperCase() === "TX") {
+          location_factor = 0.02;
+        }
+        let history_factor = 0;
+        if ("{{quote_count}}" > 0) {
+          history_factor = 0.01;
+        }
+        let gallons_factor = 0.03;
+        if ($("#id_gallons").val() > 1000) {
+          gallons_factor = 0.02;
+        }
+        let profit_factor = 0.1;
+
+        let margin = current_price * (location_factor - history_factor + gallons_factor + profit_factor);
+        let suggested = current_price + margin;
+        let total = suggested * $("#id_gallons").val();
+        
+        $("#id_price").val(suggested.toFixed(2));
+        $("#id_total_price").val(total.toFixed(2));
+      }
+      
+    </script>
+{% endblock %}
