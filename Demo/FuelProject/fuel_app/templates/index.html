@@ -1,0 +1,41 @@
+{% extends "base.html" %}  
+<!--TOP MENU --> 
+
+{% block title %} Home / Fuel {% endblock %}
+<!--LABEL -->
+
+{% block content %}
+    <!-- Jumbotron -->
+    <div class="jumbotron jumbotron-fluid text-light" id="homepage-jumbotron">
+      <div class="container">
+        <h1 class="display-4">Fuel Prediction System</h1>
+        <p class="lead">
+        <hr class="my-4">        
+        <!-- <button class="btn btn-primary btn-lg" href="#">Request quote &raquo;</button> -->
+      </div>
+    </div>
+    <!-- Text information regarding our app's functionality -->
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            <h2>Profile Management</h2>
+            <p> 
+            <p/>
+            <p> {% load static %} <img src="{% static "images/profile3.jpg" %}" alt="home" width="300" height="250" />
+            <p/>
+            <p>Keep your client profile up to date using our profile management.
+            </p>
+            
+             <!--<p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
+          </div>
+          <div class="col-sm">
+            <h2>Pricing Module</h2>
+            <p> {% load static %} <img src="{% static "images/market3.jpg" %}" alt="home" width="300" height="255" />
+            <p/>
+            <p>Pricing module estimates the price of fuel based on your location, fuel purchase history.</p>
+             <!--<p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
+          </div>
+        </div>
+        <hr>
+      </div> <!-- /container -->
+{% endblock %}
