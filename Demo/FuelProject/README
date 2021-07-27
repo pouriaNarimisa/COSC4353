@@ -1,0 +1,7 @@
+If there is no database file, run the commands bellow:
+"python manage.py makemigrations"
+"python manage.py migrate"
+
+
+To start the website, run the commands:
+"python manage.py runserver" or "python manage.py runserver 0.0.0.0:8000"
